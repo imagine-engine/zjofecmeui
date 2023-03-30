@@ -26,6 +26,7 @@ use euclid::default::Size2D;
 use lazy_static::lazy_static;
 use super::main_scene::MAIN_SCENE;
 use surfman::{
+  Device,
   Context,
   Connection,
   ContextAttributeFlags,
@@ -34,8 +35,6 @@ use surfman::{
   SurfaceAccess,
   SurfaceType
 };
-use surfman::platform::macos::cgl::device::Device;//
-// use surfman::platform::windows::angle::device::Device;
 
 lazy_static! {
   pub static ref RENDERER: Mutex<Renderer> = Mutex::new(Renderer::new());
@@ -45,12 +44,12 @@ pub struct Renderer {
   pub width: i32,
   pub height: i32,
   pub buffer_size: usize,
-  device: Device,
   context: Context,
   pub shaders: Vec<GLuint>,
   pipeline: GLuint,
   vao: GLuint,
-  vbo: GLuint
+  vbo: GLuint,
+  device: Device
 }
 
 unsafe impl Send for Renderer {}
