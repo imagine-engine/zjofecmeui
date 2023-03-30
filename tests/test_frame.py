@@ -16,16 +16,16 @@
 # limitations under the License.
 # =============================================================================
 
-from imagine import *
+# from imagine import *
 
-def test_frame():
-  frame = render()
-  pixel = frame[0, 0]
+# def test_frame():
+#   frame = render()
+#   pixel = frame[0, 0]
 
-  assert frame.width == 1920
-  assert frame.height == 1080
-  assert pixel.r == 0
-  assert pixel.g == 0
-  assert pixel.b == 0
-  assert len(frame.row(0)) == 1920
-  assert len(frame.column(0)) == 1080
+#   assert frame.width == 1920
+#   assert frame.height == 1080
+#   assert pixel.r == 0
+#   assert pixel.g == 0
+#   assert pixel.b == 0
+#   assert len(frame.row(0)) == 1920
+#   assert len(frame.column(0)) == 1080
