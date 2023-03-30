@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install FFmpeg
-        run: brew install libav
+        run: brew install ffmpeg
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
