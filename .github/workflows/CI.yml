@@ -20,7 +20,7 @@ jobs:
       - name: Install FFmpeg
         run: |
           sudo apt-get update
-          sudo apt-get install ffmpeg pkg-config
+          sudo apt-get install libavformat-dev libavfilter-dev libavdevice-dev ffmpeg
 
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
