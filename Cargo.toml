@@ -1,0 +1,18 @@
+[package]
+name = "imagine"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+path = "imagine/lib.rs"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+euclid = "0.22.7"
+ffmpeg-next = "6.0.0"
+gl = "0.14.0"
+lazy_static = "1.4.0"
+nalgebra = "0.32.2"
+png = "0.17.7"
+pyo3 = { version = "0.18.1", features = ["extension-module"] }
+surfman = "0.6.0"
