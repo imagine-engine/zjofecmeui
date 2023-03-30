@@ -1,0 +1,25 @@
+version: 2.1
+
+orbs:
+  rust: circleci/rust@1.6.0
+  python: circleci/python@1.5.0
+
+jobs:
+  build-and-test:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          pip-dependency-file: requirements-dev.txt
+      - run:
+          name: Run tests
+          command: |
+            python setup.py develop
+            mv imagine.*.so tests/
+            pytest
+
+workflows:
+  sample:
+    jobs:
+      - build-and-test
