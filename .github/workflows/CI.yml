@@ -10,17 +10,17 @@ jobs:
         python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
     steps:
       - uses: actions/checkout@v3
+      - uses: lukka/get-cmake@latest
       - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install FFmpeg
         run: |
-          git clone https://github.com/Microsoft/vcpkg.git
-          cd vcpkg
-          .\bootstrap-vcpkg.bat
-          .\vcpkg.exe update
-          .\vcpkg.exe install ffmpeg
+          git clone https://github.com/microsoft/vcpkg
+          .\vcpkg\bootstrap-vcpkg.bat
+          .\vcpkg\vcpkg.exe update
+          .\vcpkg\vcpkg.exe install ffmpeg
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
