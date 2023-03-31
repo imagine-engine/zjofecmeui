@@ -5,30 +5,19 @@ on: [push]
 jobs:
   windows:
     runs-on: windows-latest
-    defaults:
-      run:
-        shell: msys2 {0}
     strategy:
       matrix:
         python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
     steps:
       - uses: actions/checkout@v3
-      - uses: msys2/setup-msys2@v2
-        with:
-          msystem: UCRT64
-          update: true
-          install: git make pkg-config mingw-w64-ucrt-x86_64-gcc
       - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install FFmpeg
-        run: |
-          git clone https://git.ffmpeg.org/ffmpeg.git
-          cd ffmpeg
-          ./configure --disable-asm --enable-shared --enable-gpl
-          make
-          make install
+      - name: Setup FFmpeg
+        uses: AnimMouse/setup-ffmpeg@v1
+        with:
+          version: master
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
