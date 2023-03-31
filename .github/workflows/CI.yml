@@ -17,7 +17,7 @@ jobs:
       - name: Install Chocolatey
         uses: crazy-max/ghaction-chocolatey@v2
         with:
-          args: install ffmpeg pkgconfiglite
+          args: install ffmpeg pkgconfiglite --allow-empty-checksums
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
