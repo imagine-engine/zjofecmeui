@@ -17,7 +17,7 @@ jobs:
         with:
           msystem: UCRT64
           update: true
-          install: git pkg-config mingw-w64-ucrt-x86_64-gcc
+          install: git make pkg-config mingw-w64-ucrt-x86_64-gcc
       - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
