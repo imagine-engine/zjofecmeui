@@ -10,14 +10,24 @@ jobs:
         python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install Chocolatey
-        uses: crazy-max/ghaction-chocolatey@v2
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
         with:
-          args: install ffmpeg pkgconfiglite --allow-empty-checksums
+          update: true
+          install: >-
+            base-devel
+            git
+      - name: Install FFmpeg
+        run: |
+          pacman -Syuu
+          pacman -S make cmake pkg-config mingw-w64-x86_64-toolchain
+          git clone https://git.ffmpeg.org/ffmpeg.git
+          cd ffmpeg
+          ./configure --disable-asm --enable-shared --enable-gpl
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
