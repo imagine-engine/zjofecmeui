@@ -7,7 +7,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.7", "3.8"]
     steps:
       - uses: actions/checkout@v3
       - name: Setup Python ${{ matrix.python-version }}
@@ -20,7 +20,7 @@ jobs:
           git clone https://github.com/microsoft/vcpkg
           .\vcpkg\bootstrap-vcpkg.bat
           .\vcpkg\vcpkg.exe update
-          .\vcpkg\vcpkg.exe install ffmpeg
+          .\vcpkg\vcpkg.exe install ffmpeg --triplet=x64-windows
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
